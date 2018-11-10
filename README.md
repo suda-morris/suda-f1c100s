@@ -1,2 +1,6 @@
-# suda-f1c100s
-play with allwinner f1c100s
+## f1c100把玩记录
+
+[spiflash版本教程](docs/tutorials/tutorial-spiflash.md)
+
+[sd卡版本教程](docs/tutorials/tutorial-sd.md)
+

@@ -1,0 +1,14 @@
+.suniv-f1c100s-licheepi-nano.dtb.pre.o: \
+ arch/arm/dts/.suniv-f1c100s-licheepi-nano.dtb.pre.tmp \
+ include/linux/kconfig.h include/generated/autoconf.h \
+ arch/arm/dts/suniv-f1c100s.dtsi arch/arm/dts/suniv.dtsi \
+ arch/arm/dts/include/dt-bindings/clock/suniv-ccu.h \
+ arch/arm/dts/include/dt-bindings/reset/suniv-ccu.h \
+ arch/arm/dts/include/dt-bindings/gpio/gpio.h \
+ arch/arm/dts/sunxi-u-boot.dtsi include/config.h \
+ include/config_defaults.h include/config_uncmd_spl.h \
+ include/configs/suniv.h include/configs/sunxi-common.h \
+ arch/arm/include/asm/arch/cpu.h arch/arm/include/asm/arch/cpu_sun4i.h \
+ include/linux/stringify.h include/config_distro_defaults.h \
+ include/config_distro_bootcmd.h arch/arm/include/asm/config.h \
+ include/linux/kconfig.h include/config_fallbacks.h
