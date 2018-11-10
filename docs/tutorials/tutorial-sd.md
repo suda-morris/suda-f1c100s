@@ -217,7 +217,16 @@ sudo dd if=u-boot-sunxi-with-spl.bin of=/dev/sdc bs=1024 seek=8
    ![文件系统配置](https://s1.ax1x.com/2018/10/04/i8SIwn.png)
 
 
+## 应用开发
 
+### 使用U盘
+
+```bash
+1. lsusb
+2. ls /dev/sd*
+3. mount -t vfat /dev/sda1 /mnt
+4. umount /dev/sda1
+```
 
 ## 参考文献
 
