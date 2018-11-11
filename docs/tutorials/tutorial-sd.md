@@ -228,6 +228,8 @@ sudo dd if=u-boot-sunxi-with-spl.bin of=/dev/sdc bs=1024 seek=8
 4. umount /dev/sda1
 ```
 
+
+
 ## 参考文献
 
 [crosstool-NG官方文档](https://crosstool-ng.github.io/docs/)

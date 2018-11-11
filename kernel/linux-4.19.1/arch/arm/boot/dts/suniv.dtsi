@@ -29,13 +29,6 @@
 			clock-frequency = <32768>;
 			clock-output-names = "osc32k";
 		};
-
-		fake100M: clk-100M {
-			#clock-cells = <0>;
-			compatible = "fixed-clock";
-			clock-frequency = <100000000>;
-			clock-output-names = "fake-100M";
-		};
 	};
 
 	cpus {
@@ -107,6 +100,19 @@
 			#address-cells = <1>;
 			#size-cells = <0>;
 		};
+
+		i2c0: i2c@1C27000 {
+            compatible = "allwinner,sun6i-a31-i2c";
+            reg = <0x01C27000 0x400>;
+            interrupts = <7>;
+            clocks = <&ccu CLK_BUS_I2C0>;
+            resets = <&ccu RST_BUS_I2C0>;
+            pinctrl-names = "default";
+            pinctrl-0 = <&i2c0_pins>;
+            status = "disabled";
+            #address-cells = <1>;
+            #size-cells = <0>;
+        };
 
 		tcon0: lcd-controller@1c0c000 {
 			compatible = "allwinner,suniv-tcon";
@@ -214,6 +220,11 @@
 			interrupt-controller;
 			#interrupt-cells = <3>;
 			#gpio-cells = <3>;
+
+			i2c0_pins: i2c0 {
+                pins = "PE11", "PE12";
+                function = "i2c0";
+            };
 
 			spi0_pins_a: spi0-pins-pc {
 				pins = "PC0", "PC1", "PC2", "PC3";

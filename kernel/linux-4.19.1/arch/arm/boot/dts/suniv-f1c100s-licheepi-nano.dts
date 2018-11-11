@@ -48,71 +48,6 @@
 	};
 };
 
-&de {
-	status = "okay";
-};
-
-&mmc0 {
-	vmmc-supply = <&reg_vcc3v3>;
-	bus-width = <4>;
-	broken-cd;
-	status = "okay";
-};
-
-&otg_sram {
-	status = "okay";
-};
-
-&spi0 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&spi0_pins_a>;
-	status = "okay";
-
-	flash@0 {
-		#address-cells = <1>;
-		#size-cells = <1>;
-		compatible = "winbond,w25q128", "jedec,spi-nor";
-		/*		compatible = "spin-nand", "spi-nand";*/
-		/*compatible = "linux,spidev";		*/
-		reg = <0>;
-		spi-max-frequency = <40000000>;
-		
-
-	partitions {
-		compatible = "fixed-partitions";
-		#address-cells = <1>;
-		#size-cells = <1>;
-
-            partition@0 {
-                label = "u-boot";
-                reg = <0x000000 0x100000>;
-                read-only;
-            };
-
-            partition@100000 {
-                label = "dtb";
-                reg = <0x100000 0x10000>;
-                read-only;
-            };
-
-            partition@110000 {
-                label = "kernel";
-                reg = <0x110000 0x400000>;
-                read-only;
-            };
-
-            partition@510000 {
-                label = "rootfs";
-                reg = <0x510000 0xAF0000>;
-            };
-
-
-	};
-
-	};
-	
-};
-
 &tcon0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&lcd_rgb666_pins>;
@@ -126,12 +61,40 @@
 	};
 };
 
+&be0 {
+	status = "okay";
+};
+
+&de {
+	status = "okay";
+};
+
+&mmc0 {
+	vmmc-supply = <&reg_vcc3v3>;
+	bus-width = <4>;
+	broken-cd;
+	status = "okay";
+};
+
+&spi0 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&spi0_pins_a>;
+	status = "okay";
+};
+
+&i2c0 {
+    pinctrl-0 = <&i2c0_pins>;
+    pinctrl-names = "default";
+    status = "okay";
+};
+
 &uart0 {
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart0_pins_a>;
 	status = "okay";
 };
-&uart1 {
+
+&otg_sram {
 	status = "okay";
 };
 
