@@ -1,0 +1,4 @@
+[submodule "kernel/linux-5.2"]
+	path = kernel/linux-5.2
+	url = https://github.com/Lichee-Pi/linux.git
+	branch = nano-5.2-tf
