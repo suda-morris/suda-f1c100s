@@ -2,3 +2,7 @@
 	path = kernel/linux-5.2
 	url = https://github.com/Lichee-Pi/linux.git
 	branch = nano-5.2-tf
+[submodule "bootloader/u-boot"]
+	path = bootloader/u-boot
+	url = https://github.com/Lichee-Pi/u-boot.git
+	branch = nano-lcd800480
