@@ -26,13 +26,13 @@ jobs:
           cd bootloader/u-boot
           make licheepi_nano_spiflash_defconfig
           make -j8
-          pwd
-          ls -lash
+          cp .config ../backup/defconfig
+          cp u-boot-sunxi-with-spl.bin ../backup/u-boot-sunxi-with-spl.bin
       - name: Upload Uboot Binary
         uses: actions/upload-artifact@master
         with:
           name: uboot-artifact
-          path: bootloader/uboot/u-boot-sunxi-with-spl.bin 
+          path: bootloader/backup
       - name: Build Linux Kernel
         run: |
           export PATH="${GITHUB_WORKSPACE}/arm9-linux-gnueabi/x-tools/bin":$PATH
@@ -41,8 +41,10 @@ jobs:
           cd kernel/linux-5.2
           make licheepi_nano_defconfig
           make -j8
+          cp .config ../backup/defconfig
+          cp arch/arm/boot/zImage ../backup/zImage
       - name: Upload Kernel Image
         uses: actions/upload-artifact@master
         with:
-          name: zImage-artifact
-          path: kernel/linux-5.2/arch/arm/boot
+          name: kernel-artifact
+          path: kernel/backup
