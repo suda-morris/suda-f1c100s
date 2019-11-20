@@ -6,3 +6,7 @@
 	path = bootloader/u-boot
 	url = https://github.com/Lichee-Pi/u-boot.git
 	branch = nano-lcd800480
+[submodule "rootfs/buildroot"]
+	path = rootfs/buildroot
+	url = https://github.com/buildroot/buildroot.git
+	branch = master
