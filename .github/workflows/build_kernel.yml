@@ -1,4 +1,4 @@
-name: Build Linux Kernel
+name: Build U-Boot & Kernel & Rootfs
 
 on: [push]
 
@@ -14,20 +14,30 @@ jobs:
         with:
           WORK_DIR: arm9-linux-gnueabi
           ARCH: arm9
-      - name: Build Linux Kernel
+      - name: Setup Environment
         run: |
           git submodule update --init --recursive
-          sudo apt-get install bison flex texinfo help2man libssl-dev libncurses5-dev python-dev
+          sudo apt-get install bison flex texinfo help2man libssl-dev libncurses5-dev python-dev swig
           export PATH="${GITHUB_WORKSPACE}/arm9-linux-gnueabi/x-tools/bin":$PATH
           export ARCH=arm
           export CROSS_COMPILE=arm-unknown-linux-gnueabi-
+      - name: Build U-Boot
+        run: |
+          cd bootloader/u-boot
+          make licheepi_nano_spiflash_defconfig
+          make -j8
+      - name: Upload Uboot Binary
+        uses: actions/upload-artifact@master
+        with:
+          name: uboot-artifact
+          path: bootloader/uboot/u-boot-sunxi-with-spl.bin 
+      - name: Build Linux Kernel
+        run: |
           cd kernel/linux-5.2
-          ls -lash
           make licheepi_nano_defconfig
-          make -j4
+          make -j8
       - name: Upload Kernel Image
         uses: actions/upload-artifact@master
         with:
           name: zImage-artifact
           path: kernel/linux-5.2/arch/arm/boot
-
