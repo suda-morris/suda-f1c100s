@@ -18,14 +18,16 @@ jobs:
         run: |
           git submodule update --init --recursive
           sudo apt-get install bison flex texinfo help2man libssl-dev libncurses5-dev python-dev swig
+      - name: Build U-Boot
+        run: |
           export PATH="${GITHUB_WORKSPACE}/arm9-linux-gnueabi/x-tools/bin":$PATH
           export ARCH=arm
           export CROSS_COMPILE=arm-unknown-linux-gnueabi-
-      - name: Build U-Boot
-        run: |
           cd bootloader/u-boot
           make licheepi_nano_spiflash_defconfig
           make -j8
+          pwd
+          ls -lash
       - name: Upload Uboot Binary
         uses: actions/upload-artifact@master
         with:
@@ -33,6 +35,9 @@ jobs:
           path: bootloader/uboot/u-boot-sunxi-with-spl.bin 
       - name: Build Linux Kernel
         run: |
+          export PATH="${GITHUB_WORKSPACE}/arm9-linux-gnueabi/x-tools/bin":$PATH
+          export ARCH=arm
+          export CROSS_COMPILE=arm-unknown-linux-gnueabi-
           cd kernel/linux-5.2
           make licheepi_nano_defconfig
           make -j8
